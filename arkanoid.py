@@ -13,11 +13,13 @@ ORANGE = (255, 165, 0)
 BLACK = (0, 0, 0)
 
 # 載入音效
-hit_brick_sound = pygame.mixer.Sound("C:/Users/acer/Downloads/arkanoid/hit_brick.wav")  #記得修改路徑
-game_over_sound = pygame.mixer.Sound("C:/Users/acer/Downloads/arkanoid/Game_Over.mp3")  #記得修改路徑
+hit_brick_sound = pygame.mixer.Sound("C:/Users/acer/Downloads/arkanoid_pygame/hit_brick.wav")  #記得修改路徑
+game_over_sound = pygame.mixer.Sound("C:/Users/acer/Downloads/arkanoid_pygame/Game_Over.mp3")  #記得修改路徑
+game_sound = pygame.mixer.Sound("C:/Users/acer/Downloads/arkanoid_pygame/game.mp3")  #記得修改路徑
 
 # 設置音效音量
 hit_brick_sound.set_volume(0.5)
+game_sound.set_volume(0.2)
 
 # 設置屏幕尺寸
 SCREEN_WIDTH = 850
@@ -164,6 +166,7 @@ while running:
                 for ball in balls:
                     ball.start_movement()
                 game_started = True    # 遊戲開始
+                game_sound.play()
 
         if not game_over and game_started:
             # 更新遊戲對象
@@ -244,7 +247,6 @@ while running:
                 game_over = True
                 game_over_sound.play()  # 播放遊戲結束音效
 
-
         # 繪製遊戲物件
         all_sprites.draw(screen)
 
@@ -254,6 +256,7 @@ while running:
 
         # 遊戲結束畫面
         if game_over:
+            game_sound.stop()
             game_over_text = game_over_font.render(f"Game Over! Final Score: {score}", True, RED)
             screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 200, SCREEN_HEIGHT // 2 - 20))
             continue_text = font.render("Press ENTER to restart or ESC to exit", True, WHITE)
