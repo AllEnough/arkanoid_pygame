@@ -95,9 +95,9 @@ def generate_row(y_position):
     new_row = pygame.sprite.Group()
     for col in range(12):
         rand = random.random()
-        if rand < 0.05:    # 紅色磚塊5%的機率
+        if rand < 0.03:    # 紅色磚塊3%的機率
             color = RED
-        elif rand < 0.15:   # 橘色磚塊10%的機率
+        elif rand < 0.08:   # 橘色磚塊5%的機率
             color = ORANGE
         else:   # 藍色磚塊剩餘的機率
             color = BLUE
@@ -140,7 +140,7 @@ while running:
     # 初始化遊戲設定
     paddle, balls, bricks, all_sprites, score, game_started, game_over = reset_game()
     start_time = pygame.time.get_ticks()
-    scroll_speed = 0.05    # 磚塊下降速度
+    scroll_speed = 0.06    # 磚塊下降速度
     scroll_accumulator = 0     # 用於累積時間以實現平滑下降
 
     # 單局遊戲迴圈
